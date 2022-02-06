@@ -1,0 +1,215 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{varwidth}
+
+\title{Random Variables and Stochastic Process (AI5030)}
+\author{Soumyajit Chatterjee\\AI22MTECH02005 }
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Question 56 (2019)}
+There are two sets of observations on a random vector $(X,Y)$. Consider a simple linear regression model with an intercept for regressing $Y$ on $X$. Let $\hat{\beta_i}$ be the least square estimate of the regression coefficient obtained from the ith (i=1, 2) set consisting of $n_i$ observations $(n_1, n_2) > 2$. Let $\hat{\beta_0}$ be the least square  estimate obtained from the pooled sample size $n_1+n_2$. If it is known that $\hat{\beta_1} > \hat{\beta_2} > 0$, which of the following statements is true ?
+\vspace{1cm}
+
+1. $\hat{\beta_2} < \hat{\beta_0} < \hat{\beta_1}$
+
+2. $\hat{\beta_0}$ \text{ may lie outside } $(\hat{\beta_2}, \hat{\beta_1})$ but cannot exceed $\hat{\beta_1} + \hat{\beta_2}$
+
+3. $\hat{\beta_0}$ \text{ may lie outside } $(\hat{\beta_2}, \hat{\beta_1})$ but cannot be negative
+
+4. $\hat{\beta_0}$ can be negative
+\vspace{1cm}
+
+\section*{Solution}
+
+\subsection*{Derivation of Least Square estimator}
+
+Let a straight line be estimated on a vector $(X,Y)$ using an estimator such that:
+\begin{equation}
+\hat{Y} = \hat{\beta} X
+\end{equation}
+
+\noindent The error in approximation with respect to the actual distribution can be then given as,
+
+\begin{equation}
+E = \sum (\hat{Y} -Y)^2
+\end{equation}
+
+\noindent The above equation can be re-written in the matrix form as:
+
+\begin{align}
+E &= (\hat{Y} - Y)^T (\hat{Y} - Y)\\
+&= \hat{Y}^T\hat{Y} - Y^T\hat{Y} - \hat{Y}^TY + Y^TY
+\end{align}
+
+\noindent We know that $\hat{Y} = \hat{\beta} X$, therefore substituting in equation 4:
+
+\begin{equation}
+E = Y^TY - 2\hat{\beta}^TX^TY + \hat{\beta}^TX^TX\hat{\beta}
+\end{equation}
+
+\vspace{2mm}
+
+\noindent Differentiating the above equation w.r.t $\hat{\beta}$ and equating it to 0 to obtain the $\hat{\beta}$ that minimizes the error.
+
+\begin{equation}
+\dfrac{dE}{d\hat{\beta}} = -2X^TY + 2X^TX\hat{\beta} = 0
+\end{equation}
+
+\begin{equation}
+X^TX\hat{\beta} = X^TY
+\end{equation}
+
+\begin{equation}
+\hat{\beta} = (X^TX)^{-1}X^TY
+\end{equation}
+
+\vspace{3mm}
+\noindent We know that the term $X^TX$ is the term $\sum X^2$ which is always positive. Therefore, the term that determines the sign of $\hat{\beta}$ is $X^TY$
+
+\vspace{3mm}
+\noindent We now take two cases which eliminates our options:
+
+\vspace{3mm}
+\noindent \textbf{Case 1:}
+\vspace{3mm}
+
+\noindent Sample $n_1$,
+\vspace{3mm}
+
+\begin{center}
+
+X = $
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix}
+$
+\hspace{2mm} Y = $
+\begin{bmatrix}
+-2\\-4\\-6
+\end{bmatrix}
+$
+\hspace{2mm} $\hat{\beta_1} =  -2$
+\end{center}
+
+\vspace{3mm}
+
+\noindent Sample $n_2$,
+\vspace{3mm}
+
+\begin{center}
+
+X = $
+\begin{bmatrix}
+4\\5\\6
+\end{bmatrix}
+$
+\hspace{2mm} Y = $
+\begin{bmatrix}
+-8\\-10\\-12
+\end{bmatrix}
+$
+\hspace{2mm} $\hat{\beta_2} =  -2$
+\end{center}
+
+\vspace{3mm}
+
+\noindent Sample $n_1+n_2$,
+\vspace{3mm}
+
+\begin{center}
+
+X = $
+\begin{bmatrix}
+1\\2\\3\\4\\5\\6
+\end{bmatrix}
+$
+\hspace{2mm} Y = $
+\begin{bmatrix}
+-2\\-4\\-6\\-8\\-10\\-12
+\end{bmatrix}
+$
+\hspace{2mm} $\hat{\beta_0} =  -2$
+\end{center}
+
+\vspace{3mm}
+
+\noindent For the above case, $\hat{\beta_0}$ is negative and $\hat{\beta_1} = \hat{\beta_2} = \hat{\beta_0}$, therefore, the options (1) and (3) are invalid.
+
+\clearpage
+
+\vspace{3mm}
+\noindent \textbf{Case 2:}
+\vspace{3mm}
+
+\noindent Sample $n_1$,
+\vspace{3mm}
+
+\begin{center}
+
+X = $
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix}
+$
+\hspace{2mm} Y = $
+\begin{bmatrix}
+-2\\-4\\-6
+\end{bmatrix}
+$
+\hspace{2mm} $\hat{\beta_1} =  -2$
+\end{center}
+
+\vspace{3mm}
+
+\noindent Sample $n_2$,
+\vspace{3mm}
+
+\begin{center}
+
+X = $
+\begin{bmatrix}
+4\\5\\6
+\end{bmatrix}
+$
+\hspace{2mm} Y = $
+\begin{bmatrix}
+12\\15\\18
+\end{bmatrix}
+$
+\hspace{2mm} $\hat{\beta_2} =  3$
+\end{center}
+
+\vspace{3mm}
+
+\noindent Sample $n_1+n_2$,
+\vspace{3mm}
+
+\begin{center}
+
+X = $
+\begin{bmatrix}
+1\\2\\3\\4\\5\\6
+\end{bmatrix}
+$
+\hspace{2mm} Y = $
+\begin{bmatrix}
+-2\\-4\\-6\\12\\15\\18
+\end{bmatrix}
+$
+\hspace{2mm} $\hat{\beta_0} =  5$
+\end{center}
+
+\vspace{3mm}
+
+\noindent Here, $\hat{\beta_1}$ is -2 and $\hat{\beta_2}$ is 3. Now, $\hat{\beta_1} + \hat{\beta_2} = -2+3=1$. But we see that $\hat{\beta_0} = 5$ which is outside the range of $\hat{\beta_1} + \hat{\beta_2}$
+
+\vspace{3mm}
+\noindent Therefore, option (2) is also incorrect. The only option which remains i.e option (4) is correct.
+
+\end{document}
