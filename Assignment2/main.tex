@@ -1,0 +1,133 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{varwidth}
+
+\title{Random Variables and Stochastic Process (AI5030)}
+\author{Soumyajit Chatterjee\\AI22MTECH02005 }
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Question 56 (2019)}
+There are two sets of observations on a random vector $(X,Y)$. Consider a simple linear regression model with an intercept for regressing $Y$ on $X$. Let $\hat{\beta_i}$ be the least square estimate of the regression coefficient obtained from the ith (i=1, 2) set consisting of $n_i$ observations $(n_1, n_2) > 2$. Let $\hat{\beta_0}$ be the least square  estimate obtained from the pooled sample size $n_1+n_2$. If it is known that $\hat{\beta_1} > \hat{\beta_2} > 0$, which of the following statements is true ?
+\vspace{1cm}
+
+1. $\hat{\beta_2} < \hat{\beta_0} < \hat{\beta_1}$
+
+2. $\hat{\beta_0}$ \text{ may lie outside } $(\hat{\beta_2}, \hat{\beta_1})$ but cannot exceed $\hat{\beta_1} + \hat{\beta_2}$
+
+3. $\hat{\beta_0}$ \text{ may lie outside } $(\hat{\beta_2}, \hat{\beta_1})$ but cannot be negative
+
+4. $\hat{\beta_0}$ can be negative
+\vspace{1cm}
+
+\section*{Solution}
+Let the straight line estimated on a vector $(X,Y)$ of sample size $n_1$, $n_2$ and $n_1+n_2$ be:
+
+\begin{equation}
+y_1 = \hat{\beta_1}\, x_1
+\end{equation}
+\begin{equation}
+y_2 = \hat{\beta_2}\, x_2
+\end{equation}
+\begin{equation}
+y = \hat{\beta_0}\, x
+\end{equation}
+
+\noindent The linear regression coefficient on the vector $(X,Y)$ is given by the formula:
+
+$$
+\hat{\beta} = (X^T\,X)^{-1}\,(X^T\,Y)
+$$
+
+\noindent The term $(X^TX)^{-1}$ can be written as the square of $L_2$ norm of X. Therefore, the above equation can be re-written as:
+
+$$
+\hat{\beta} = \dfrac{X^T\,Y}{||X||^2}
+$$
+\clearpage
+\noindent Therefore, from equation 1 and 2 we can write that:
+
+\begin{equation}
+\hat{\beta_1} = \dfrac{X_1^T Y_1}{||X_1||^2} = \dfrac{p_1}{q_1}
+\end{equation}
+
+\begin{equation}
+\hat{\beta_2} = \dfrac{X_2^T Y_2}{||X_2||^2} = \dfrac{p_2}{q_2}
+\end{equation}
+
+\noindent Since, $\hat{\beta_0}$ is the estimator for stacked sample size $n_1+n_2$ and can be given by:
+
+\begin{equation}
+\hat{\beta_0} = \dfrac{[X_1^T\, X_2^T] \begin{bmatrix} Y_1\\Y_2 \end{bmatrix}}{||X_1||^2 + ||X_2||^2}
+\end{equation}
+
+\noindent Upon simplification we get:
+
+\begin{equation}
+\hat{\beta_0} = \dfrac{{}X_1^T\,Y_1\, + \, X_1^T\,Y_2 \, + X_2^T\,Y_1 \, + \, X_2^T\, Y_2}{||X_1||^2 + ||X_2||^2}
+\end{equation}
+
+\vspace{3mm}
+\noindent Since, all the terms in the numerator are scalars, we can represent the above equation as:
+
+$$
+\hat{\beta_0} = \dfrac{p_1 + p_2 + r + s}{q_1 + q_2}
+$$
+
+\noindent Where r is given as $X_2^T\,Y_1$ and s id given as $X_1^T\,Y_2$
+
+\noindent In the question it is given that $\hat{\beta_1} > \hat{\beta_2} > 0$ which implies:
+\vspace{4mm}
+
+$$
+\dfrac{p_1}{q_1} > \dfrac{p_2}{q_2} > 0
+$$
+\vspace{2mm}
+
+\noindent Since, $q_1$ and $q_2$ is the square of norm, it is always positive. Therefore, from the above equation we can say that $p_1>0$ and $p_2>0$.
+
+\noindent In the expression for $\hat{\beta_0}$,
+
+$$
+\hat{\beta_0} = \dfrac{p_1 + p_2 + r + s}{q_1 + q_2}
+$$
+
+\noindent it can be greater than $\hat{\beta_1}$ and $\hat{\beta_2}$ if r and s are also positive. Therefore, option (1) is incorrect.
+
+\noindent If we evaluate the expression of $\hat{\beta_1} + \hat{\beta_2}$ it comes out to be:
+
+$$
+\hat{\beta_1} + \hat{\beta_2} = \dfrac{p_1 + p_2}{q_1 + q_2}
+$$
+
+\noindent But the equation for $\hat{\beta_0}$ is:
+
+$$
+\hat{\beta_0} = \dfrac{p_1 + p_2 + r + s}{q_1 + q_2}
+$$
+
+\noindent Therefore, 
+
+$$
+\dfrac{p_1 + p_2 + r + s}{q_1 + q_2} > \dfrac{p_1 + p_2}{q_1 + q_2}
+$$
+
+\noindent only if r and s take positive values. Therefore, option (2) is incorrect.
+
+\noindent In the expression of $\hat{\beta_0}$ 
+$$
+\hat{\beta_0} = \dfrac{p_1 + p_2 + r + s}{q_1 + q_2}
+$$
+
+\noindent if r and s are negative then the numerator of the above expression can be negative. Therefore, option (3) is also incorrect. 
+
+\noindent So, from the above conclusions drawn we can say that option (4) is the correct option.
+
+
+
+\end{document}
