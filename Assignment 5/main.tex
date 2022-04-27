@@ -1,0 +1,114 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{varwidth}
+\usepackage{graphicx}
+
+\title{Random Variables and Stochastic Process (AI5030)}
+\author{Soumyajit Chatterjee\\AI22MTECH02005 }
+
+\begin{document}
+
+\maketitle
+
+\section*{Question 107 (Dec 2017)}
+For $n \geq 1$, let $X_n$ be a Poisson random variable with mean $n^2$. Which of the following is equal to-
+
+$$
+\dfrac{1}{\sqrt{2 \pi}} \int_{- \infty}^{\infty} e^{\frac{-x^2}{2}} dx
+$$
+
+\noindent 1. $\lim_{n \to \infty}$ P\{$X_n > (n+1)^2$\}
+
+\noindent 2. $\lim_{n \to \infty}$ P\{$X_n \leq (n+1)^2$\}
+
+\noindent 3. $\lim_{n \to \infty}$ P\{$X_n < (n-1)^2$\}
+
+\noindent 4. $\lim_{n \to \infty}$ P\{$X_n < (n-2)^2$\}
+
+\section*{Solution}
+We need to first find what $\dfrac{1}{\sqrt{2 \pi}} \int_{- \infty}^{\infty} e^{\frac{-x^2}{2}} dx$ equals to. To calculate the value of the integral, we first try to solve the following integral-
+
+$$
+I' = \int_{- \infty}^{\infty} e^{\frac{-x^2}{2}} dx
+$$
+
+\noindent Since, the function inside the integral is an even function, we can write-
+
+$$
+I' = 2 \int_{0}^{\infty} e^{\frac{-x^2}{2}} dx
+$$
+
+\noindent Let y = $\dfrac{x^2}{2}$ which implies x = $\sqrt{2y}$ and dy = xdx. Therefore, dx = $\dfrac{dy}{x}$ which is $\dfrac{y^{\frac{-1}{2}}}{\sqrt{2}}$. Therefore, 
+
+$$
+I' = 2 \int_{- \infty}^{\infty} e^{-y} .\, \dfrac{y^{\frac{-1}{2}}}{\sqrt{2}} dx
+$$
+
+$$
+\Rightarrow \sqrt{2} \int_{- \infty}^{\infty} e^{-y} .\, y^{\frac{-1}{2}} dx
+$$
+
+$$
+\Rightarrow \sqrt{2}. \Gamma (\dfrac{1}{2}) = \sqrt{2 \pi}
+$$
+
+\noindent As we have defined I' above, I = $\dfrac{I}{\sqrt{2 \pi}}$, therefore, I = $\dfrac{\sqrt{2 \pi}}{\sqrt{2 \pi}}$ = 1. Therefore, we have to match the options which equals to 1.\\
+
+\noindent PDF of Poisson distribution is given by $f_x(x) = \dfrac{\lambda^x . e^{-x}}{x!}$.
+
+\noindent CDF of Poisson distribution is given be P(x $\leq$ n) = $F_x(n) = e^{-\lambda}.\sum_{x=0}^n \left(\dfrac{\lambda^x}{x!} \right)$
+
+\noindent Now,
+$$
+\lim_{n \to \infty} \{P(x \leq n)\} = \lim_{n \to \infty} \sum_{x=0}^n \left(\dfrac{\lambda^x}{x!} \right)
+$$
+
+\noindent Checking for correctness of option (2), we have $\lambda = n^2$, therefore, for $P(x_n \leq (n+1)^2)$ we have-
+
+$$
+P(x_n \leq (n+1)^2) = e^{-n^2}. \sum_{x=0}^{(n+1)^2} \dfrac{(n^2)^x}{x!}
+$$
+
+$$
+\lim_{n \to \infty} P(x_n \leq (n+1)^2) = \lim_{n \to \infty} e^{-n^2} . \lim_{n \to \infty} \sum_{x=0}^{(n+1)^2} \dfrac{(n^2)^x}{x!}
+$$
+
+$$
+\Rightarrow \lim_{n \to \infty} \left( e^{-n^2} . \sum_{x=0}^{(n+1)^2} \dfrac{(n^2)^x}{x!} \right)
+$$
+
+\noindent Since, $ n \to \infty$, then without loss of generality $(n+1)^2 \to \infty$, therefore, 
+
+$$
+\lim_{n \to \infty} \left( e^{-n^2} . \sum_{x=0}^{(n+1)^2} \dfrac{(n^2)^x}{x!} \right) = \lim_{n \to \infty} \left( e^{-n^2} . \sum_{x=0}^{\infty} \dfrac{(n^2)^x}{x!} \right)
+$$
+
+$$
+\Rightarrow e^{-n^2} .\, e^{n^2} = 1
+$$
+
+\noindent Checking for correctness of option (1), we have $P(x_n > (n+1)^2) = 1 - P(x_n \leq (n+1)^2)$ therefore-
+
+$$
+1 - P(x_n \leq (n+1)^2) = 1 - 1 = 0
+$$
+
+\noindent Since, we already calculated the value of $P(x_n \leq (n+1)^2)$ = 1 while evaluating option 2 previously.
+
+\noindent Similarly, checking for correctness of option (3), we have $P(x_n > (n-1)^2) = 1 - P(x_n \leq (n-1)^2)$ therefore-
+
+$$
+1 - P(x_n \leq (n-1)^2) = 1 - 1 = 0
+$$
+
+\noindent Similarly, checking for correctness of option (4), we have $P(x_n > (n-2)^2) = 1 - P(x_n \leq (n-2)^2)$ therefore-
+
+$$
+1 - P(x_n \leq (n-2)^2) = 1 - 1 = 0
+$$
+
+\noindent The only option that matches the integral value is option (2). Therefore, option (2) is the correct option.
+
+\end{document}
